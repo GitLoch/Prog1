@@ -1,0 +1,10 @@
+viego 1 12
+dani 2 9
+opelvectra 3 22
+piros 4 21
+eper 5 53
+fuge 6 32
+galamb 7 42
+heber 8 101
+asanyi 9 52
+janos 10 132
