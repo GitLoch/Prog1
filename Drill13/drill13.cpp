@@ -26,16 +26,11 @@ int main(){
 
 		/////////////////////
 
-
-		/*Ezt a részt órán csináltam, de ott se működitt, hiszen a new egy pointerrel
-		  dolgozik, szóval a vectoromnak is pointernek kellett lennie. Probáltam
-		  sokféleképeen, de minden máshogy összevissza errorokat dobott 
-		  "use of deleted function" meg effélékről.*/
-		vector<Rectangle*> v;
+		Vector_ref<Rectangle> v;
 		for (int i = 0; i<8; i++){
 			v.push_back(new Rectangle(Point(i*100, i*100), 100, 100));
-			v[v.size()-1]->set_fill_color(Color::red);
-			win.attach(*v[v.size()-1]);
+			v[v.size()-1].set_fill_color(Color::red);
+			win.attach(v[v.size()-1]);
 		}
 		win.wait_for_button();
 
@@ -58,11 +53,16 @@ int main(){
 
 		//////////////////////
 
-		while(true){
-			int xkoor = rand() % 8;
-			int ykoor = rand() % 8;
+		int xkoor = rand() % 8;
+		int ykoor = rand() % 8;
 
-			Image randomimage (Point(xkoor*100, ykoor*100), "100.jpg");
+		Image randomimage (Point(xkoor*100, ykoor*100), "100.jpg");
+
+		while(true){
+			xkoor = rand() % 8;
+			ykoor = rand() % 8;
+
+			randomimage.move(xkoor*100, ykoor*100);
 			win.attach(randomimage);
 
 			//Valamiért emiatt a label egy csomó értelmetlen karakterré vált.
@@ -70,16 +70,6 @@ int main(){
 
 			win.wait_for_button();
 		}
-
-		/*Ez meg a memóriafelszabadítás mert pointereket csináltam a vectornak vagy mi.
-		  Megnéztem valgrinddal, a vector nélkül is leakel szerinte, de ezzel a 
-		  felszabadítással pont annyit leakel, mint az egész vektor nélkül, szóval
-		  szerintem jól szabadíttoam fel.*/
-		for (int i =0; i< v.size();i++)
-   		{
-     		delete (v[i]);
-   		} 
-   		v.clear();
 		return 0;
 	}
 	catch (exception& e){
