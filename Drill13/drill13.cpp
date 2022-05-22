@@ -53,18 +53,15 @@ int main(){
 
 		//////////////////////
 
-		int xkoor = rand() % 8;
-		int ykoor = rand() % 8;
-
-		Image randomimage (Point(xkoor*100, ykoor*100), "100.jpg");
-
+		
+		srand(time(0));
 		while(true){
-			xkoor = rand() % 8;
-			ykoor = rand() % 8;
+			int xkoor = rand() % 7;
+			int ykoor = rand() % 7;
 
-			randomimage.move(xkoor*100, ykoor*100);
+			Image randomimage (Point(xkoor*100, ykoor*100), "100.jpg");
 			win.attach(randomimage);
-
+			
 			//Valamiért emiatt a label egy csomó értelmetlen karakterré vált.
 			win.set_label("A Window");
 
